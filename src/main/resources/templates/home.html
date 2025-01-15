@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html">
+<div layout:fragment="content">
+    <form action="/dynamic-search" method="get">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>BRAND</th>
+            <th>PROCESSOR</th>
+            <th>RAM</th>
+            <th>MEMORY</th>
+            <th>OS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td>
+            <input type="text" name="name" class="form-control">
+        </td>
+        <td>
+            <input type="number" name="price" class="form-control">
+        </td>
+        <td>
+            <select name="brand" class="form-control">
+                <option></option>
+                <option>Apple</option>
+                <option>Aser</option>
+                <option>HP</option>
+                <option>Lenovo</option>
+                <option>ThunderRobot</option>
+                <option>Asus</option>
+            </select>
+        </td>
+        <td>
+            <select name="processor" class="form-control">
+                <option></option>
+                <option>Intel Core i5 12</option>
+                <option>Intel Core i7 12</option>
+                <option>AMD Radeon 7</option>
+                <option>AMD Radeon 8</option>
+                <option>AMD Radeon 9</option>
+                <option>M1</option>
+                <option>M2</option>
+            </select>
+        </td>
+        <td>
+            <select name="ram" class="form-control">
+                <option></option>
+                <option>8 gb</option>
+                <option>16 gb</option>
+                <option>32 gb</option>
+                <option>64 gb</option>
+            </select>
+        </td>
+        <td>
+            <select name="memory" class="form-control">
+                <option></option>
+                <option>256 gb</option>
+                <option>512 gb</option>
+                <option>1 tb</option>
+                <option>2 tb</option>
+            </select>
+        </td>
+        <td>
+            <select name="os" class="form-control">
+                <option></option>
+                <option>Windows</option>
+                <option>Mac os</option>
+                <option>Linux</option>
+            </select>
+        </td>
+        <td>
+            <button class="btn btn-success">Search</button>
+        </td>
+        </tbody>
+    </table>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>BRAND</th>
+            <th>PROCESSOR</th>
+            <th>RAM</th>
+            <th>MEMORY</th>
+            <th>OS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="notebook : ${notebooks}">
+            <td th:text="${notebook.id}"></td>
+            <td th:text="${notebook.name}"></td>
+            <td th:text="${notebook.price}"></td>
+            <td th:text="${notebook.brand}"></td>
+            <td th:text="${notebook.processor}"></td>
+            <td th:text="${notebook.ram}"></td>
+            <td th:text="${notebook.memory}"></td>
+            <td th:text="${notebook.os}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
