@@ -23,11 +23,13 @@ public class Notebook {
     @Column(name = "PRICE", nullable = false)
     private Double price;
 
-    @Column(name = "BRAND", nullable = false)
-    private String brand;
+    @JoinColumn(name = "BRAND_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Brand brand;
 
-    @Column(name = "PROCESSOR")
-    private String processor;
+    @JoinColumn(name = "PROCESSOR_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Processor processor;
 
     @Column(name = "RAM")
     private String ram;
