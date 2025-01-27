@@ -7,22 +7,25 @@ import kz.bitlab.g130criteriabuilder.service.BrandService;
 import kz.bitlab.g130criteriabuilder.service.NotebookService;
 import kz.bitlab.g130criteriabuilder.service.ProcessorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final NotebookService notebookService;
+    @Autowired
+    @Qualifier("NotebookServiceAlternativeImpl")
+    private NotebookService notebookService;
     private final BrandService brandService;
     private final ProcessorService processorService;
 
@@ -63,5 +66,11 @@ public class HomeController {
         List<Processor> processors = processorService.getAllProcessors();
         model.addAttribute("processors", processors);
         return "home";
+    }
+
+    @PostMapping("/notebooks/add")
+    public String addNotebook(Notebook notebook) {
+        notebookService.addNotebook(notebook);
+        return "redirect:/";
     }
 }

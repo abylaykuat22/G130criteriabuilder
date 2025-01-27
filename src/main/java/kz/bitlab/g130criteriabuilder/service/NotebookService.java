@@ -1,31 +1,26 @@
 package kz.bitlab.g130criteriabuilder.service;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import kz.bitlab.g130criteriabuilder.entity.Notebook;
-import kz.bitlab.g130criteriabuilder.repository.NotebookRepository;
-import lombok.RequiredArgsConstructor;
-
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class NotebookService {
+public interface NotebookService {
 
-    private final NotebookRepository notebookRepository;
+    Page<Notebook> getAllNotebooks(int page, int size, String sortBy, String sortOrder);
 
-    public Page<Notebook> getAllNotebooks(int page, int size, String sortBy, String sortOrder) {
-        Sort.Direction direction = sortOrder.equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Sort sort = Sort.by(direction, sortBy);
-        PageRequest pageRequest = PageRequest.of(page, size, sort);
-        return notebookRepository.findAll(pageRequest);
-    }
+    List<Notebook> search(Notebook notebook);
 
-    public List<Notebook> search(Notebook notebook) {
-        return notebookRepository.search(notebook);
-    }
+    void methodOne(Notebook notebook);
+
+    void methodTwo(Notebook notebook);
+
+    void methodThree(Notebook notebook);
+
+    List<Notebook> someMethod(Notebook notebook, String text);
+
+    void addNotebook(Notebook notebook);
 }
